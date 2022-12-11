@@ -1,12 +1,13 @@
 import kotlin.math.abs
 
 class Lab7 {
+    //fib(n) = fib(n-1) + fib(n-2)
     fun fib(n: Int): Array<Int> {
         if (n <= 0) {
             println("0 - 0")
-            return arrayOf(1, 0);
+            return arrayOf(1, 0); // we will return 2 last numbers so we can get result for n+1
         }
-        var previous: Array<Int> = fib(n - 1)
+        var previous: Array<Int> = fib(n - 1) // we will get array with [fib(n-2), fib(n-1)]
         val result = previous.last() + previous.first()
         println("$n - $result")
         return arrayOf(previous.last(), result)

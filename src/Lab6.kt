@@ -61,26 +61,29 @@ class Lab6() {
     }
 
     private fun func2y(a: Double, b: Double, c: Double, y: Double): String {
-        if (a == 0.0) {
-            if (b == 0.0) {
+        if (a == 0.0) { // if a is 0, it is easier to solve
+            if (b == 0.0) { // if b is also 0 we don't have x, so we can't find a solution
                 return "Wrong arguments"
             }
-            return ((y - c)/b).toString()
+            return ((y - c)/b).toString() // for when a is 0 we have y = bx + c, so x = (y - c)/b
         }
         val x1: Double
         val x2: Double
+        // To solve this equation we will make default quadratic equation, so we need to get 0 instead of y
         val newC: Double = c - y
+
+        // finding discriminant (later - D)
         val disc = b * b - 4.0 * a * newC
 
-        return if (disc > 0) {
+        return if (disc > 0) { // if D more than 0 we have 2 solutions
             x1 = (-b + sqrt(disc)) / (2 * a)
             x2 = (-b - sqrt(disc)) / (2 * a)
             "$x1 and $x2"
-        } else if (disc == 0.0) {
+        } else if (disc == 0.0) { // if D is 0 we have only 1 solution
             x2 = -b / (2 * a)
             x1 = x2
             x1.toString()
-        } else {
+        } else { // if D less than 0 we have imaginary parts
             val realPart = -b / (2 * a)
             val imaginaryPart = sqrt(-disc) / (2 * a)
             "$realPart+${imaginaryPart}i and $realPart-${imaginaryPart}i"

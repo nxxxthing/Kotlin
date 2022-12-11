@@ -82,7 +82,7 @@ class Lab14 {
         val n = readLine()!!.toInt()
 
         file.writeText(cipherText(file, n))
-        file.setReadOnly()
+        file.setReadOnly() // to add extra protection we will set read only for the file
         println("Success!")
     }
 
@@ -93,12 +93,12 @@ class Lab14 {
         if (! file.exists()) {
             println("File $fileName does not exists in folder files!")
             return
-        } else if (file.canWrite()) {
+        } else if (file.canWrite()) { // if file is writable it wasn't ciphered
             println("File $fileName was not ciphered")
             return
         }
 
-        file.setWritable(true)
+        file.setWritable(true) // we have to do this because all ciphered files will have readOnly set to true
 
         print("Enter number it was ciphered with: ")
         val n = readLine()!!.toInt()
@@ -116,6 +116,12 @@ class Lab14 {
         return result
     }
 
+    /**
+     * This method create new [File], or rewrites it,
+     * if it was already created and user agreed
+     * it accepts [message] (with default value) that will be printed when asking for a file name
+     * and [extension] (with default value) if we need to create file with custom extension
+     */
     private fun createFile(message: String = "Enter file name to create: ", extension: String = ""): File? {
         print(message)
         val fileName = readLine().toString()

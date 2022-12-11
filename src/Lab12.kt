@@ -85,8 +85,20 @@ class Lab12 () {
         var a: Int? = null
         var b: Int? = null
 
-        for (tempA in (0..1000)) {
-            for (tempB in (0..1000)) {
+
+        // We will cycle through all possible pairs of a and b to find the min sum that gets us needed result
+        for (tempA in (0..100000)) {
+            // if we found result that less than one of the parameters
+            // we won't find anything better with bigger numbers
+            if (tempA > result) {
+                break
+            }
+            for (tempB in (0..100000)) {
+                // if we found result that less than one of the parameters
+                // we won't find anything better with bigger numbers
+                if (tempB > result || tempA + tempB > result) {
+                    break
+                }
                 if (5*tempA - 2*tempB == n && tempA + tempB < result) {
                     a = tempA
                     b = tempB
@@ -103,6 +115,9 @@ class Lab12 () {
 
     }
 
+    /**
+     * returns [Weekd] that has the same value as passed parameter [n]
+     */
     private fun findDayByNumber(n: Int): Weekd? {
         for (day in Weekd.values()) {
             if (n == day.day) {
